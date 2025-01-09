@@ -1,10 +1,11 @@
+import { CurrentLineup } from "@/components/current-lineup";
 import { Button } from "@/components/ui/button";
 
 export default async function Page() {
   return (
     <main>
       <div className="flex justify-center">
-        <div className="flex flex-col">
+        <div className="flex flex-col space-y-20">
           {/*
         <div className="px-8 pb-12">
           <Image
@@ -28,17 +29,19 @@ export default async function Page() {
             <h1 className="text-9xl pb-4 pt-10 drop-shadow-[5px_5px_0px_rgba(0,0,0,1)]">
               ELVEBRUS
             </h1>
+            <div className="flex justify-center">
+              <a href="/biletter">
+                <Button size="lg" className="mt-12 font font-semibold text-lg">
+                  Kjøp Biletter
+                </Button>
+              </a>
+            </div>
           </div>
-          <div className="flex justify-center">
-            <a href="/biletter">
-              <Button size="lg" className="mt-12 font font-semibold text-lg">
-                Kjøp Biletter
-              </Button>
-            </a>
+          <div>
+            <CurrentLineup />
           </div>
         </div>
       </div>
-      <div></div>
     </main>
   );
 }

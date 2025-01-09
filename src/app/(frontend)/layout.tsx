@@ -11,7 +11,7 @@ export default function RootLayout({
     <html lang="nb">
       <body>
         <body>
-          <div className="h-screen">
+          <div className="min-h-screen">
             <Header />
             <div>{children}</div>
           </div>

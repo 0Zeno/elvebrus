@@ -68,15 +68,51 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Lineup = {
+  _id: string;
+  _type: "lineup";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  year: number;
+  artists: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "artistProfile";
+  }>;
+};
+
+export type ArtistProfile = {
+  _id: string;
+  _type: "artistProfile";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+};
+
 export type Ticket = {
   _id: string;
   _type: "ticket";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
-  price?: number;
-  link?: string;
+  title: string;
+  price: number;
+  link: string;
 };
 
 export type Post = {
@@ -197,7 +233,7 @@ export type Category = {
 
 export type Slug = {
   _type: "slug";
-  current?: string;
+  current: string;
   source?: string;
 };
 
@@ -289,22 +325,58 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Ticket | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Lineup | ArtistProfile | Ticket | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./src/sanity/lib/queries/lineupQuery.ts
+// Variable: CURRENT_YEAR_LINEUP_QUERY
+// Query: *[_type == "lineup"] | order(-year){  year,  artists[]->{    _id,    name,    image {    asset->    }  }}[0]
+export type CURRENT_YEAR_LINEUP_QUERYResult = {
+  year: number;
+  artists: Array<{
+    _id: string;
+    name: string | null;
+    image: {
+      asset: {
+        _id: string;
+        _type: "sanity.imageAsset";
+        _createdAt: string;
+        _updatedAt: string;
+        _rev: string;
+        originalFilename?: string;
+        label?: string;
+        title?: string;
+        description?: string;
+        altText?: string;
+        sha1hash?: string;
+        extension?: string;
+        mimeType?: string;
+        size?: number;
+        assetId?: string;
+        uploadId?: string;
+        path?: string;
+        url?: string;
+        metadata?: SanityImageMetadata;
+        source?: SanityAssetSourceData;
+      } | null;
+    } | null;
+  }>;
+} | null;
+
 // Source: ./src/sanity/lib/queries/ticketQuery.ts
 // Variable: TICKET_QUERY
 // Query: *[_type == "ticket"] {    _id,    title,    price,    link    }
 export type TICKET_QUERYResult = Array<{
   _id: string;
-  title: string | null;
-  price: number | null;
-  link: string | null;
+  title: string;
+  price: number;
+  link: string;
 }>;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    "*[_type == \"lineup\"] | order(-year){\n  year,\n  artists[]->{\n    _id,\n    name,\n    image {\n    asset->\n    }\n  }\n}[0]": CURRENT_YEAR_LINEUP_QUERYResult;
     "*[_type == \"ticket\"] {\n    _id,\n    title,\n    price,\n    link\n    }": TICKET_QUERYResult;
   }
 }

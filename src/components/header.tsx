@@ -24,7 +24,7 @@ export const routes = [
 
 export function Header() {
   return (
-    <header className="flex justify-center px-4 w-full mb-12 top-0 sticky">
+    <header className="flex justify-center px-4 w-full mb-12 top-0 sticky bg-background z-10">
       <nav className="pt-2 pb-2 font-medium flex space-x-2">
         <div className="space-x-2">
           {routes.map((route) => {
