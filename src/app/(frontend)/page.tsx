@@ -18,14 +18,14 @@ export default async function Page() {
           */}
           <div className="pt-32 w-max text-center">
             <div className="flex justify-between">
-              <h2 className="text-white text-4xl drop-shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+              <h2 className="text-4xl drop-shadow-[3px_3px_0px_rgba(0,0,0,1)]">
                 Stanghelle
               </h2>
-              <h2 className="text-white text-4xl drop-shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+              <h2 className="text-4xl drop-shadow-[3px_3px_0px_rgba(0,0,0,1)]">
                 19.-20 juni
               </h2>
             </div>
-            <h1 className="text-9xl font-semibold pb-4 pt-10 text-white drop-shadow-[5px_5px_0px_rgba(0,0,0,1)]">
+            <h1 className="text-9xl pb-4 pt-10 drop-shadow-[5px_5px_0px_rgba(0,0,0,1)]">
               ELVEBRUS
             </h1>
           </div>
@@ -38,8 +38,7 @@ export default async function Page() {
           </div>
         </div>
       </div>
-      <div>
-      </div>
+      <div></div>
     </main>
   );
 }

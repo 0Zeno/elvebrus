@@ -68,6 +68,17 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Ticket = {
+  _id: string;
+  _type: "ticket";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  price?: number;
+  link?: string;
+};
+
 export type Post = {
   _id: string;
   _type: "post";
@@ -278,5 +289,22 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Ticket | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./src/sanity/lib/queries/ticketQuery.ts
+// Variable: TICKET_QUERY
+// Query: *[_type == "ticket"] {    _id,    title,    price,    link    }
+export type TICKET_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  price: number | null;
+  link: string | null;
+}>;
+
+// Query TypeMap
+import "@sanity/client";
+declare module "@sanity/client" {
+  interface SanityQueries {
+    "*[_type == \"ticket\"] {\n    _id,\n    title,\n    price,\n    link\n    }": TICKET_QUERYResult;
+  }
+}
