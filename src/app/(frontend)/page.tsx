@@ -4,7 +4,7 @@ export default async function Page() {
   return (
     <main>
       <div className="flex justify-center">
-        <div className="h-[calc(100vh-3rem)] flex flex-col">
+        <div className="flex flex-col">
           {/*
         <div className="px-8 pb-12">
           <Image

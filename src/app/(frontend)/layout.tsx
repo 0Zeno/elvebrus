@@ -11,8 +11,10 @@ export default function RootLayout({
     <html lang="nb">
       <body>
         <body>
-          <Header />
-          <div>{children}</div>
+          <div className="h-screen">
+            <Header />
+            <div>{children}</div>
+          </div>
           <Footer />
         </body>
       </body>
