@@ -70,7 +70,7 @@ export type Geopoint = {
 
 export type Slug = {
   _type: "slug";
-  current?: string;
+  current: string;
   source?: string;
 };
 
@@ -80,8 +80,8 @@ export type Lineup = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  year?: number;
-  artists?: Array<{
+  year: number;
+  artists: Array<{
     _ref: string;
     _type: "reference";
     _weak?: boolean;
@@ -116,9 +116,9 @@ export type Ticket = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
-  price?: number;
-  link?: string;
+  title: string;
+  price: number;
+  link: string;
 };
 
 export type BlockContent = Array<{
@@ -215,7 +215,7 @@ export declare const internalGroqTypeReferenceTo: unique symbol;
 // Variable: CURRENT_YEAR_LINEUP_QUERY
 // Query: *[_type == "lineup"] | order(-year){  year,  artists[]->{    _id,    name,    image {    asset->    }  }}[0]
 export type CURRENT_YEAR_LINEUP_QUERYResult = {
-  year: number | null;
+  year: number;
   artists: Array<{
     _id: string;
     name: string | null;
@@ -243,7 +243,7 @@ export type CURRENT_YEAR_LINEUP_QUERYResult = {
         source?: SanityAssetSourceData;
       } | null;
     } | null;
-  }> | null;
+  }>;
 } | null;
 
 // Source: ./src/sanity/lib/queries/ticketQuery.ts
@@ -251,9 +251,9 @@ export type CURRENT_YEAR_LINEUP_QUERYResult = {
 // Query: *[_type == "ticket"] {    _id,    title,    price,    link    }
 export type TICKET_QUERYResult = Array<{
   _id: string;
-  title: string | null;
-  price: number | null;
-  link: string | null;
+  title: string;
+  price: number;
+  link: string;
 }>;
 
 // Query TypeMap

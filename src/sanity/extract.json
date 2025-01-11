@@ -343,7 +343,7 @@
           "value": {
             "type": "string"
           },
-          "optional": true
+          "optional": false
         },
         "source": {
           "type": "objectAttribute",
@@ -395,7 +395,7 @@
         "value": {
           "type": "number"
         },
-        "optional": true
+        "optional": false
       },
       "artists": {
         "type": "objectAttribute",
@@ -439,7 +439,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       }
     }
   },
@@ -589,21 +589,21 @@
         "value": {
           "type": "string"
         },
-        "optional": true
+        "optional": false
       },
       "price": {
         "type": "objectAttribute",
         "value": {
           "type": "number"
         },
-        "optional": true
+        "optional": false
       },
       "link": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
         },
-        "optional": true
+        "optional": false
       }
     }
   },
