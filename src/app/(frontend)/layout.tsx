@@ -12,7 +12,7 @@ export default function RootLayout({
       <body>
         <div className="min-h-screen">
           <Header />
-          <div>{children}</div>
+          <div className="flex justify-center w-full">{children}</div>
         </div>
         <Footer />
       </body>

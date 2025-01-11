@@ -14,11 +14,11 @@ export const routes = [
   },
   {
     name: "Informasjon",
-    href: "/biletter",
+    href: "/informasjon",
   },
   {
     name: "Om oss",
-    href: "/biletter",
+    href: "/om-oss",
   },
 ];
 
