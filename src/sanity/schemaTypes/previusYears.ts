@@ -4,7 +4,6 @@ export const previusYears = defineType({
   name: "previusYear",
   title: "Tidligere år",
   type: "document",
-  validation: (Rule) => Rule.required(),
   fields: [
     defineField({
       name: "year",
@@ -32,7 +31,7 @@ export const previusYears = defineType({
       name: "images",
       title: "Bilder fra året",
       type: "array",
-      validation: (Rule) => Rule.required().min(1),
+      validation: (Rule) => Rule.required().min(6),
       of: [
         defineField({
           name: "image",

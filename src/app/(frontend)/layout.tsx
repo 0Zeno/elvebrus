@@ -18,7 +18,9 @@ export default function RootLayout({
             <BackgroundSvg width={400} className={"relative -top-[13rem] right-[35rem]"} />
           </div> */}
           <Header />
-          <div className="flex z-10 justify-center w-full">{children}</div>
+          <div className="flex z-10 justify-center ">
+            <div className="flex flex-col w-3/4">{children}</div>
+          </div>
         </div>
         <Footer />
       </body>

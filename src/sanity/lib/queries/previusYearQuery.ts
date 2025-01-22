@@ -5,7 +5,7 @@ const PREVIUS_YEARS_QUERY = defineQuery(`
   *[_type == "previusYear"] | order(year desc) {
     _id,
     year,
-    slug,
+    "slug" : slug.current,
     lineup->{
       artists[]->{
         _id,
@@ -26,25 +26,25 @@ export async function getPreviusYears() {
 }
 
 const YEAR_BY_SLUG_QUERY = defineQuery(`
-  *[_type == "previusYear" && slug.current == $slug][0] {
-  _id,
-  year,
-  "slug": slug.current,
-  lineup->{
-    artists[]->{
-      _id,
-      name,
-      image {
-        asset->
+*[_type == "previusYear" && slug.current == $slug][0] {
+    _id,
+    year,
+    "slug": slug.current,
+    lineup->{
+      artists[]->{
+        _id,
+        name,
+        image {
+          asset->
+        }
       }
+    },
+    images[] {
+      asset->
     }
-  },
-  images[] {
-    asset->
   }
-}
 `);
 
-export async function getPreviusYearBySlug(slug: string) {
+export const getPreviousYearBySlug = async (slug: string) => {
   return await client.fetch(YEAR_BY_SLUG_QUERY, { slug });
-}
+};

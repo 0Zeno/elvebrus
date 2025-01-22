@@ -5,7 +5,7 @@ export default async function Biletter() {
   const tickets = await getTickets();
 
   return (
-      <div className="flex flex-col w-[75%]">
+      <>
         <h2 className="text-6xl drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] pb-8">
           Biletter
         </h2>
@@ -39,6 +39,6 @@ export default async function Biletter() {
             eveniet.
           </p>
         </div>
-      </div>  
+      </>  
   );
 }

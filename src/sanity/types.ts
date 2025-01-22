@@ -276,11 +276,11 @@ export type CURRENT_YEAR_LINEUP_QUERYResult = {
 
 // Source: ./src/sanity/lib/queries/previusYearQuery.ts
 // Variable: PREVIUS_YEARS_QUERY
-// Query: *[_type == "previusYear"] | order(year desc) {    _id,    year,    slug,    lineup->{      artists[]->{        _id,        name,        image {          asset->        }      }    },    images[] {      asset->    }  }
+// Query: *[_type == "previusYear"] | order(year desc) {    _id,    year,    "slug" : slug.current,    lineup->{      artists[]->{        _id,        name,        image {          asset->        }      }    },    images[] {      asset->    }  }
 export type PREVIUS_YEARS_QUERYResult = Array<{
   _id: string;
   year: number;
-  slug: Slug;
+  slug: string;
   lineup: {
     artists: Array<{
       _id: string;
@@ -337,7 +337,7 @@ export type PREVIUS_YEARS_QUERYResult = Array<{
   }>;
 }>;
 // Variable: YEAR_BY_SLUG_QUERY
-// Query: *[_type == "previusYear" && slug.current == $slug][0] {  _id,  year,  "slug": slug.current,  lineup->{    artists[]->{      _id,      name,      image {        asset->      }    }  },  images[] {    asset->  }}
+// Query: *[_type == "previusYear" && slug.current == $slug][0] {    _id,    year,    "slug": slug.current,    lineup->{      artists[]->{        _id,        name,        image {          asset->        }      }    },    images[] {      asset->    }  }
 export type YEAR_BY_SLUG_QUERYResult = {
   _id: string;
   year: number;
@@ -413,8 +413,8 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"lineup\"] | order(-year){\n  year,\n  artists[]->{\n    _id,\n    name,\n    image {\n    asset->\n    }\n  }\n}[0]": CURRENT_YEAR_LINEUP_QUERYResult;
-    "\n  *[_type == \"previusYear\"] | order(year desc) {\n    _id,\n    year,\n    slug,\n    lineup->{\n      artists[]->{\n        _id,\n        name,\n        image {\n          asset->\n        }\n      }\n    },\n    images[] {\n      asset->\n    }\n  }\n": PREVIUS_YEARS_QUERYResult;
-    "\n  *[_type == \"previusYear\" && slug.current == $slug][0] {\n  _id,\n  year,\n  \"slug\": slug.current,\n  lineup->{\n    artists[]->{\n      _id,\n      name,\n      image {\n        asset->\n      }\n    }\n  },\n  images[] {\n    asset->\n  }\n}\n": YEAR_BY_SLUG_QUERYResult;
+    "\n  *[_type == \"previusYear\"] | order(year desc) {\n    _id,\n    year,\n    \"slug\" : slug.current,\n    lineup->{\n      artists[]->{\n        _id,\n        name,\n        image {\n          asset->\n        }\n      }\n    },\n    images[] {\n      asset->\n    }\n  }\n": PREVIUS_YEARS_QUERYResult;
+    "\n*[_type == \"previusYear\" && slug.current == $slug][0] {\n    _id,\n    year,\n    \"slug\": slug.current,\n    lineup->{\n      artists[]->{\n        _id,\n        name,\n        image {\n          asset->\n        }\n      }\n    },\n    images[] {\n      asset->\n    }\n  }\n": YEAR_BY_SLUG_QUERYResult;
     "*[_type == \"ticket\"] {\n    _id,\n    title,\n    price,\n    link\n    }": TICKET_QUERYResult;
   }
 }

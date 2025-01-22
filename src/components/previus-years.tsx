@@ -23,7 +23,7 @@ export async function PreviusYears() {
                   src={urlFor(year.images[0]).url()}
                   alt={`Bilde fra året ${year.year}`}
                 ></Image>
-                <Link href={`/${year.slug}`}>
+                <Link href={`/dette-var/${year.slug}`}>
                   <h4 className="text-center text-2xl drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:underline underline-offset-2">
                     Sjekk ut {year.year}
                   </h4>
