@@ -5,9 +5,9 @@ export type BackgroundSvgProps = {
   width: number;
   className: string | undefined;
 };
-export const BackgroundSvg = ({ width, className }: BackgroundSvgProps) => {
+export const BackgroundSvg = ({ width, className}: BackgroundSvgProps) => {
   return (
-    <div className="absolute z-10 overflow-hidden">
+    <div className="">
       <Image
         width={width}
         src={backgroudSvg}

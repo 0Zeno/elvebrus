@@ -7,7 +7,7 @@ import { Socials } from "./socials";
 export function Footer() {
   return (
     <>
-      <footer className="bg-primary flex space-x-32 w-full p-4 bottom-0 ">
+      <footer className="bg-primary flex space-x-32 w-full p-4 bottom-0 mt-16">
         <div className="w-64">
           <Image src={logo} alt={"Logo"} width={96} className="brightness-0"></Image>
         </div>

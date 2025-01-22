@@ -39,6 +39,6 @@ export default async function Biletter() {
             eveniet.
           </p>
         </div>
-      </div>
+      </div>  
   );
 }

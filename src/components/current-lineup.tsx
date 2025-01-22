@@ -33,7 +33,7 @@ export async function CurrentLineup() {
                       <div className="flex aspect-square items-center justify-center p-6">
                         {lineup.artists[index].image ? (
                           <Image
-                          className="border border-orange-600 rounded-md"
+                            className="border-2 rounded-md"
                             width="600"
                             height="600"
                             src={urlFor(lineup.artists[index].image)
@@ -42,7 +42,7 @@ export async function CurrentLineup() {
                               .quality(80)
                               .auto("format")
                               .url()}
-                            alt={ lineup.artists[index].name || "artist"}
+                            alt={lineup.artists[index].name || "artist"}
                           ></Image>
                         ) : null}
                       </div>

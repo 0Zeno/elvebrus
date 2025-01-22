@@ -9,11 +9,13 @@ export const artistProfileType = defineType({
       name: "name",
       title: "Navnet til artisten",
       type: "string",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "image",
       title: "Bilde av artisten, slik som dere poster på instagram",
       type: "image",
+      validation: (Rule) => Rule.required(),  
     }),
   ],
 });

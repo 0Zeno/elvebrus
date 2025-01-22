@@ -13,18 +13,23 @@ export const lineupType = defineType({
     }),
     defineField({
       name: "artists",
-      title: "artister",
+      title: "Artister",
       type: "array",
       validation: (Rule) => Rule.required(),
       of: [
         {
-          title: "artist",
-          name: "Artist",
+          name: "artist",
+          title: "Artist",
           type: "reference",
           to: [{ type: "artistProfile" }],
-          validation: (Rule) => Rule.required(),
+          validation: (Rule) => Rule.required().min(1),
         },
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: 'year',
+    }
+  },
 });
