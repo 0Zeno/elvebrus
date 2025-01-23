@@ -31,7 +31,7 @@ export default async function Year({ params }: { params: { slug: string } }) {
               <Image
                 width={600}
                 height={400}
-                className="block h-full w-full  object-cover object-center"
+                className="block h-full w-full object-cover object-center"
                 src={urlFor(data!.images[0]).url()}
                 alt={`Bilde fra Elvebrus ${data?.year}`}
               ></Image>
@@ -40,7 +40,7 @@ export default async function Year({ params }: { params: { slug: string } }) {
               <Image
                 width={600}
                 height={400}
-                className="block h-full w-full  object-cover object-center"
+                className="block h-full w-full object-cover object-center"
                 src={urlFor(data!.images[1]).url()}
                 alt={`Bilde fra Elvebrus ${data?.year}`}
               ></Image>
