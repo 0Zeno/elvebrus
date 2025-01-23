@@ -2,9 +2,11 @@ import { urlFor } from "@/sanity/lib/image";
 import { getPreviousYearBySlug } from "@/sanity/lib/queries/previusYearQuery";
 import Image from "next/image";
 
-export default async function Year({ params }: { params: { slug: string } }) {
-  const { slug } = await params
-  const data = await getPreviousYearBySlug(slug);
+type slugstring = Promise<{ slug: slugstring }>;
+
+export default async function Year({ params }: { params: slugstring }) {
+  const { slug } = await params;
+  const data = await getPreviousYearBySlug(slug.toString());
 
   return (
     <>

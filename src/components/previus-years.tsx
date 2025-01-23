@@ -29,7 +29,7 @@ export async function PreviusYears() {
                   <Link href={`/dette-var/${year.slug}`}>
                     <h4 className="group text-center text-2xl drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:underline underline-offset-2 ">
                       Sjekk ut {year.year}
-                      <p className="inline-block pl-2 transition-transform duration-100 ease-in group-hover:translate-x-1">
+                      <p className="inline-block pl-2 transition-transform font-semibold duration-100 ease-in group-hover:translate-x-1">
                         &#x2799;
                       </p>
                     </h4>
