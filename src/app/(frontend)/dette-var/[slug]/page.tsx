@@ -3,7 +3,8 @@ import { getPreviousYearBySlug } from "@/sanity/lib/queries/previusYearQuery";
 import Image from "next/image";
 
 export default async function Year({ params }: { params: { slug: string } }) {
-  const data = await getPreviousYearBySlug(params.slug);
+  const { slug } = await params
+  const data = await getPreviousYearBySlug(slug);
 
   return (
     <>
@@ -30,7 +31,7 @@ export default async function Year({ params }: { params: { slug: string } }) {
               <Image
                 width={600}
                 height={400}
-                className="block h-full w-full border-2 object-cover object-center"
+                className="block h-full w-full  object-cover object-center"
                 src={urlFor(data!.images[0]).url()}
                 alt={`Bilde fra Elvebrus ${data?.year}`}
               ></Image>
@@ -39,7 +40,7 @@ export default async function Year({ params }: { params: { slug: string } }) {
               <Image
                 width={600}
                 height={400}
-                className="block h-full w-full border-2 object-cover object-center"
+                className="block h-full w-full  object-cover object-center"
                 src={urlFor(data!.images[1]).url()}
                 alt={`Bilde fra Elvebrus ${data?.year}`}
               ></Image>
@@ -48,7 +49,7 @@ export default async function Year({ params }: { params: { slug: string } }) {
               <Image
                 width={600}
                 height={400}
-                className="block h-full w-full border-2 object-cover object-center"
+                className="block h-full w-full  object-cover object-center"
                 src={urlFor(data!.images[2]).url()}
                 alt={`Bilde fra Elvebrus ${data?.year}`}
               ></Image>
@@ -59,7 +60,7 @@ export default async function Year({ params }: { params: { slug: string } }) {
               <Image
                 width={600}
                 height={400}
-                className="block h-full w-full border-2 object-cover object-center"
+                className="block h-full w-full  object-cover object-center"
                 src={urlFor(data!.images[3]).url()}
                 alt={`Bilde fra Elvebrus ${data?.year}`}
               ></Image>
@@ -68,7 +69,7 @@ export default async function Year({ params }: { params: { slug: string } }) {
               <Image
                 width={600}
                 height={400}
-                className="block h-full w-full border-2 object-cover object-center"
+                className="block h-full w-full  object-cover object-center"
                 src={urlFor(data!.images[4]).url()}
                 alt={`Bilde fra Elvebrus ${data?.year}`}
               ></Image>
@@ -77,7 +78,7 @@ export default async function Year({ params }: { params: { slug: string } }) {
               <Image
                 width={600}
                 height={400}
-                className="block h-full w-full border-2 object-cover object-center"
+                className="block h-full w-full  object-cover object-center"
                 src={urlFor(data!.images[5]).url()}
                 alt={`Bilde fra Elvebrus ${data?.year}`}
               ></Image>
