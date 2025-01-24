@@ -2,7 +2,7 @@ import { defineQuery } from "next-sanity";
 import { client } from "../client";
 
 const CURRENT_YEAR_LINEUP_QUERY =
-  defineQuery(`*[_type == "lineup"] | order(-year){
+  defineQuery(`*[_type == "lineup"] | order(year desc){
   year,
   artists[]->{
     _id,
