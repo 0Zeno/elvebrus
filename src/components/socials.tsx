@@ -3,19 +3,19 @@ import Link from "next/link";
 const links = [
   {
     name: "Instagram",
-    href: "https://instagram.com",
+    href: "https://www.instagram.com/elvebrusfestivalen/",
   },
   {
     name: "Tiktok",
-    href: "https://www.tiktok.com",
+    href: "https://www.tiktok.com/@elvebrus",
   },
   {
     name: "Facebook",
-    href: "https://www.facebook.com",
+    href: "https://www.facebook.com/elvebrusfestivalen/",
   },
   {
     name: "Youtube",
-    href: "https://www.youtube.com",
+    href: "https://www.youtube.com/channel/UCStCNJMBXuag-FC_YWfhiGQ",
   },
 ];
 

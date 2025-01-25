@@ -7,7 +7,7 @@ export type BackgroundSvgProps = {
 };
 export const BackgroundSvg = ({ width, className}: BackgroundSvgProps) => {
   return (
-    <div className="">
+    <div>
       <Image
         width={width}
         src={backgroudSvg}
