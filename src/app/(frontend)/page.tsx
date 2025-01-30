@@ -13,7 +13,7 @@ export default async function Page() {
             <div className="flex justify-center">
               <a href="/biletter">
                 {/*TODO: SMALLER BUTTON ON MOBILE*/}
-                <Button size="lg" className=" font font-semibold text-lg">
+                <Button className="font font-semibold text-md md:text-lg">
                   Kjøp Biletter
                 </Button>
               </a>
