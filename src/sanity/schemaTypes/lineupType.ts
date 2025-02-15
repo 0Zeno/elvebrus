@@ -22,14 +22,14 @@ export const lineupType = defineType({
           title: "Artist",
           type: "reference",
           to: [{ type: "artistProfile" }],
-          validation: (Rule) => Rule.required().min(1),
+          validation: (Rule) => Rule.required(),
         },
       ],
     }),
   ],
   preview: {
     select: {
-      title: 'year',
-    }
+      title: "year",
+    },
   },
 });
