@@ -1,5 +1,5 @@
 import { defineQuery } from "next-sanity";
-import { client } from "../client";
+import { sanityFetch } from "@/sanity/lib/live";
 
 const PREVIUS_YEARS_QUERY = defineQuery(`
   *[_type == "previusYear"] | order(year desc) {
@@ -22,7 +22,7 @@ const PREVIUS_YEARS_QUERY = defineQuery(`
 `);
 
 export async function getPreviusYears() {
-  return client.fetch(PREVIUS_YEARS_QUERY);
+  return sanityFetch({ query: PREVIUS_YEARS_QUERY });
 }
 
 const YEAR_BY_SLUG_QUERY = defineQuery(`
@@ -46,5 +46,8 @@ const YEAR_BY_SLUG_QUERY = defineQuery(`
 `);
 
 export const getPreviousYearBySlug = async (slug: string) => {
-  return await client.fetch(YEAR_BY_SLUG_QUERY, { slug });
+  return sanityFetch({
+    query: YEAR_BY_SLUG_QUERY,
+    params: { slug },
+  });
 };

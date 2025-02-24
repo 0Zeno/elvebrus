@@ -4,8 +4,8 @@ import { getTickets } from "@/sanity/lib/queries/ticketQuery";
 import Link from "next/link";
 
 export default async function Biletter() {
-  const tickets = await getTickets();
-  const ticketInfo = await getTextBlock("biletter");
+  const { data: tickets } = await getTickets();
+  const { data: ticketInfo } = await getTextBlock("biletter");
 
   return (
     <>

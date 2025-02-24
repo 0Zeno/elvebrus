@@ -2,7 +2,7 @@ import { RenderContent } from "@/components/ui/renderContent";
 import { getTextBlock } from "@/sanity/lib/queries/textBlockQuery";
 
 export default async function Informasjon() {
-  const data = await getTextBlock("informasjon");
+  const { data: data } = await getTextBlock("informasjon");
 
   return (
     <div>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export async function PreviusYears() {
-  const previusYears = await getPreviusYears();
+  const { data: previusYears } = await getPreviusYears();
   return (
     <div className="flex justify-center pb-16 h-full">
       <div>

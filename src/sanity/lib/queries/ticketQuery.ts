@@ -1,5 +1,5 @@
 import { defineQuery } from "next-sanity";
-import { client } from "../client";
+import { sanityFetch } from "../live";
 
 const TICKET_QUERY = defineQuery(`*[_type == "ticket"] {
     _id,
@@ -9,5 +9,5 @@ const TICKET_QUERY = defineQuery(`*[_type == "ticket"] {
     }`);
 
 export function getTickets() {
-  return client.fetch(TICKET_QUERY);
+  return sanityFetch({ query: TICKET_QUERY });
 }

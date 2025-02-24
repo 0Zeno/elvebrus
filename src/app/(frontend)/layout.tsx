@@ -1,6 +1,7 @@
 import { Header } from "@/components/header";
 import "../globals.css";
 import { Footer } from "@/components/footer";
+import { SanityLive } from "@/sanity/lib/live";
 
 export default function RootLayout({
   children,
@@ -14,6 +15,7 @@ export default function RootLayout({
           <Header />
           <div className="flex justify-center ">
             <div className="flex flex-col w-3/4">{children}</div>
+            <SanityLive />
           </div>
         </div>
         <Footer />

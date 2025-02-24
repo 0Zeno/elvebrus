@@ -2,7 +2,7 @@ import { RenderContent } from "@/components/ui/renderContent";
 import { getTextBlock } from "@/sanity/lib/queries/textBlockQuery";
 
 export default async function OmOss() {
-  const data = await getTextBlock("om-oss");
+  const { data: data } = await getTextBlock("om-oss");
 
   return (
     <div>

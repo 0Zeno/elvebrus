@@ -1,5 +1,5 @@
 import { defineQuery } from "next-sanity";
-import { client } from "../client";
+import { sanityFetch } from "@/sanity/lib/live";
 
 const CURRENT_YEAR_LINEUP_QUERY =
   defineQuery(`*[_type == "lineup"] | order(year desc){
@@ -14,5 +14,5 @@ const CURRENT_YEAR_LINEUP_QUERY =
 }[0]`);
 
 export function getCurrentYearLienup() {
-  return client.fetch(CURRENT_YEAR_LINEUP_QUERY);
+  return sanityFetch({ query: CURRENT_YEAR_LINEUP_QUERY });
 }

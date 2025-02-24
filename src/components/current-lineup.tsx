@@ -4,7 +4,7 @@ import Image from "next/image";
 import Marquee from "react-fast-marquee";
 
 export async function CurrentLineup() {
-  const lineup = await getCurrentYearLienup();
+  const { data: lineup } = await getCurrentYearLienup();
 
   return (
     <div className="flex justify-center md:pt-12 md:pb-12 ">
