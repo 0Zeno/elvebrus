@@ -17,7 +17,7 @@ export async function CurrentLineup() {
             {lineup?.artists.map((artist) => {
               return (
                 <Image
-                  className="mr-4 w-32 md:w-48 border-2"
+                  className="mr-4 w-32 md:w-64 border-2"
                   key={artist._id}
                   width={200}
                   height={200}

@@ -9,7 +9,7 @@ export function HeroSection() {
           18.-19. juni
         </h2>
       </div>
-      <h1 className="text-5xl text-center md:text-9xl pb-4 pt-10 md:drop-shadow-[5px_5px_0px_rgba(0,0,0,1)] drop-shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+      <h1 className="text-5xl text-center md:text-9xl pb-4 pt-4 sm:pt-10 md:drop-shadow-[5px_5px_0px_rgba(0,0,0,1)] drop-shadow-[3px_3px_0px_rgba(0,0,0,1)]">
         ELVEBRUS
       </h1>
     </div>

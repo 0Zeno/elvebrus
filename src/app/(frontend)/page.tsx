@@ -12,7 +12,6 @@ export default async function Page() {
             <HeroSection />
             <div className="flex justify-center">
               <a href="/biletter">
-                {/*TODO: SMALLER BUTTON ON MOBILE*/}
                 <Button className="font font-semibold text-md md:text-lg">
                   Kjøp Biletter
                 </Button>

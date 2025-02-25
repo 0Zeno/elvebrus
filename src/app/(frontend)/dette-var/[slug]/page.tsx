@@ -15,14 +15,14 @@ export default async function Year({
       <h2 className="text-4xl md:text-6xl text-center drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] pb-8">
         Dette var året {data?.year}
       </h2>
-      <div className="flex justify-center flex-wrap">
+      <div className="flex justify-center flex-wrap space-x-2  sm:space-x-8">
         {data?.lineup.artists.map((artist) => {
           return (
             <h4
-              className="text-md md:text-2xl drop-shadow-[3px_3px_0px_rgba(0,0,0,1)]"
+              className="text-md md:text-2xl drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] "
               key={artist._id}
             >
-              {`${artist.name}/`}
+              {`${artist.name}`}
             </h4>
           );
         })}
