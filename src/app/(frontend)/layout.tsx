@@ -14,7 +14,7 @@ export default function RootLayout({
         <div className="min-h-screen">
           <Header />
           <div className="flex justify-center ">
-            <div className="flex flex-col w-3/4 max-w-[2560px]">{children}</div>
+            <div className="flex flex-col w-3/4">{children}</div>
             <SanityLive />
           </div>
         </div>
