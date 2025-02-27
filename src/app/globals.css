@@ -8,13 +8,12 @@ body {
 
 @font-face {
   font-family: "ElvebrusFont";
-  src: url("./ELVEBRUS.ttf");
+  src: url("./zing.otf");
 }
 
 h1 {
   font-family: "ElvebrusFont";
   line-height: 1.625;
-  
 }
 
 h2 {

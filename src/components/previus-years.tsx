@@ -8,7 +8,7 @@ export async function PreviusYears() {
   return (
     <div className="flex justify-center pb-16 h-full">
       <div>
-        <h2 className="text-2xl md:text-4xl text-center drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]  md:drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] pb-8">
+        <h2 className="text-4xl md:text-7xl text-center drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]  md:drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] pb-8">
           Tidligere år
         </h2>
         <div className="flex flex-col sm:flex-row space-x-0 sm:space-x-8">
