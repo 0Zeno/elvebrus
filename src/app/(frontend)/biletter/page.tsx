@@ -22,7 +22,7 @@ export default async function Biletter() {
                 href={ticket.link}
               >
                 <h3>{ticket.title}</h3>
-                <h3>{ticket.price}</h3>
+                <h3>{ticket.price},-</h3>
               </Link>
               {ticket.release && (
                 <h4>Salget åpner {convertToLocalTime(ticket.release)}</h4>

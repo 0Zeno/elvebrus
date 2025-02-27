@@ -12,7 +12,7 @@ export default async function Year({
 
   return (
     <>
-      <h2 className="text-4xl md:text-6xl text-center drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] pb-8">
+      <h2 className="text-7xl drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] pb-8">
         Dette var året {data?.year}
       </h2>
       <div className="flex justify-center flex-wrap space-x-2  sm:space-x-8">
