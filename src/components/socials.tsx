@@ -22,7 +22,7 @@ const links = [
 export function Socials() {
   return (
     <div className="flex flex-col">
-      <h2 className="font-semibold">Følg oss:</h2>
+      <h2 className="font-semibold text-2xl">Følg oss:</h2>
       {links.map((link) => {
         return (
           <Link key={link.name} href={link.href}>

@@ -5,7 +5,8 @@ const TICKET_QUERY = defineQuery(`*[_type == "ticket"] {
     _id,
     title,
     price,
-    link
+    link,
+    release,
     }`);
 
 export function getTickets() {

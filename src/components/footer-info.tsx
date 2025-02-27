@@ -14,7 +14,7 @@ const links = [
 export function FooterInfo() {
   return (
     <div className="flex flex-col">
-      <h2 className="font-semibold">Informasjon</h2>
+      <h2 className="font-semibold text-2xl">Informasjon</h2>
 
       {links.map((link) => {
         return (

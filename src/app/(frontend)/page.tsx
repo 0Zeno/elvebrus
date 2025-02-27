@@ -7,7 +7,7 @@ export default async function Page() {
   return (
     <main>
       <div className="flex justify-center">
-        <div className="flex flex-col space-y-20">
+        <div className="flex flex-col space-y-16">
           <div>
             <HeroSection />
             <div className="flex justify-center">

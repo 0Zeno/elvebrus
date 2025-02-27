@@ -1054,6 +1054,13 @@
           "type": "string"
         },
         "optional": false
+      },
+      "release": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
       }
     }
   },

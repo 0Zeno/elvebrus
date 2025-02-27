@@ -49,7 +49,9 @@ export function Header() {
           {routes.map((route) => {
             return (
               <Button variant="headerLink" size="lg" key={route.name}>
-                <Link href={route.href}>{route.name}</Link>
+                <Link className="" href={route.href}>
+                  {route.name}
+                </Link>
               </Button>
             );
           })}

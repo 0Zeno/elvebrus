@@ -186,6 +186,7 @@ export type Ticket = {
   title: string;
   price: number;
   link: string;
+  release?: string;
 };
 
 export type BlockContent = Array<{
@@ -476,12 +477,13 @@ export type TEXT_BLOCK_QUERYResult = {
 
 // Source: ./src/sanity/lib/queries/ticketQuery.ts
 // Variable: TICKET_QUERY
-// Query: *[_type == "ticket"] {    _id,    title,    price,    link    }
+// Query: *[_type == "ticket"] {    _id,    title,    price,    link,    release,    }
 export type TICKET_QUERYResult = Array<{
   _id: string;
   title: string;
   price: number;
   link: string;
+  release: string | null;
 }>;
 
 // Query TypeMap
@@ -492,6 +494,6 @@ declare module "@sanity/client" {
     "\n  *[_type == \"previusYear\"] | order(year desc) {\n    _id,\n    year,\n    \"slug\" : slug.current,\n    lineup->{\n      artists[]->{\n        _id,\n        name,\n        image {\n          asset->\n        }\n      }\n    },\n    images[] {\n      asset->\n    }\n  }\n": PREVIUS_YEARS_QUERYResult;
     "\n*[_type == \"previusYear\" && slug.current == $slug][0] {\n    _id,\n    year,\n    \"slug\": slug.current,\n    lineup->{\n      artists[]->{\n        _id,\n        name,\n        image {\n          asset->\n        }\n      }\n    },\n    images[] {\n      asset->\n    }\n  }\n": YEAR_BY_SLUG_QUERYResult;
     "\n*[_type == \"textBlock\" && block == $block][0]{\n  block,\n  text\n}\n": TEXT_BLOCK_QUERYResult;
-    "*[_type == \"ticket\"] {\n    _id,\n    title,\n    price,\n    link\n    }": TICKET_QUERYResult;
+    "*[_type == \"ticket\"] {\n    _id,\n    title,\n    price,\n    link,\n    release,\n    }": TICKET_QUERYResult;
   }
 }

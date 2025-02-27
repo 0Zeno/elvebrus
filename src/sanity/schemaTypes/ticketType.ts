@@ -23,5 +23,10 @@ export const ticketType = defineType({
       type: "url",
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: "release",
+      title: "Dato bilettsalget åpner (vises ingenting hvis ikke fylt ut)",
+      type: "datetime",
+    }),
   ],
 });
