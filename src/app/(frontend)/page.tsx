@@ -11,9 +11,9 @@ export default async function Page() {
           <div>
             <HeroSection />
             <div className="flex justify-center">
-              <a href="/biletter">
+              <a href="/billetter">
                 <Button className="font font-semibold text-md md:text-lg">
-                  Kjøp Biletter
+                  Kjøp Billetter
                 </Button>
               </a>
             </div>
