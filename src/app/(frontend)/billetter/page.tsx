@@ -4,14 +4,14 @@ import { getTextBlock } from "@/sanity/lib/queries/textBlockQuery";
 import { getTickets } from "@/sanity/lib/queries/ticketQuery";
 import Link from "next/link";
 
-export default async function Biletter() {
+export default async function Billetter() {
   const { data: tickets } = await getTickets();
   const { data: ticketInfo } = await getTextBlock("biletter");
 
   return (
     <>
       <h2 className="text-7xl drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] pb-8">
-        Biletter
+        Billetter
       </h2>
       <div className="space-y-4 md:space-y-6">
         {tickets.map((ticket) => {
