@@ -18,8 +18,8 @@ export const routes = [
     href: "/",
   },
   {
-    name: "Biletter",
-    href: "/biletter",
+    name: "Billetter",
+    href: "/billetter",
   },
   {
     name: "Informasjon",
