@@ -1,7 +1,7 @@
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "../live";
 
-const TICKET_QUERY = defineQuery(`*[_type == "ticket"] {
+const TICKET_QUERY = defineQuery(`*[_type == "ticket"] | order(price desc) {
     _id,
     title,
     price,
