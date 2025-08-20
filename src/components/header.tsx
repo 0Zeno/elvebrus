@@ -1,8 +1,12 @@
+'use client'
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
+import { usePathname } from "next/navigation";
 
 import { FiMenu } from "react-icons/fi";
 
@@ -31,11 +35,15 @@ export const routes = [
   },
 ];
 
+
 export function Header() {
+
+  const pathname = usePathname()
+  console.log(pathname)
   return (
     <header className="flex px-4 w-full mb-12 top-0 sticky bg-background z-10">
       <nav className=" font-medium flex space-x-2 w-full justify-between">
-        <Link href={"/"}>
+        <Link href={"/"}  >
           <Image
             src={logo}
             alt={"Logo"}
@@ -49,7 +57,7 @@ export function Header() {
           {routes.map((route) => {
             return (
               <Button variant="headerLink" size="lg" key={route.name}>
-                <Link className="" href={route.href}>
+                <Link className={pathname === route.href ? "underline" : ""} href={route.href}>
                   {route.name}
                 </Link>
               </Button>
