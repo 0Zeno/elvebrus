@@ -2,7 +2,7 @@ import { RenderContent } from "@/components/ui/renderContent";
 import { convertToLocalTime } from "@/lib/utils";
 import { getTextBlock } from "@/sanity/lib/queries/textBlockQuery";
 import { getTickets } from "@/sanity/lib/queries/ticketQuery";
-import Link from "next/link";
+
 
 export default async function Billetter() {
   const { data: tickets } = await getTickets();
@@ -17,13 +17,14 @@ export default async function Billetter() {
         {tickets.map((ticket) => {
           return (
             <div key={ticket._id}>
-              <Link
+              <a
+                target="_blank"
                 className="hover:underline text-lg md:text-4xl underline-offset-2 flex justify-between drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]"
                 href={ticket.link}
               >
                 <h3>{ticket.title}</h3>
                 <h3>{ticket.price},-</h3>
-              </Link>
+              </a>
               {ticket.release && (
                 <h4>Salget åpner {convertToLocalTime(ticket.release)}</h4>
               )}
