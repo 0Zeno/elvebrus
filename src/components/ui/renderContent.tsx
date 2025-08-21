@@ -40,6 +40,7 @@ const Image = ({ value, isInline }: ImageProps) => {
       src={src}
       alt={alt}
       loading="lazy"
+      className="border-2 rounded-sm"
       style={{
         display: isInline ? "inline-block" : "block",
         aspectRatio: width / height,
