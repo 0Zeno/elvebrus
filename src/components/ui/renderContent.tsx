@@ -94,7 +94,7 @@ export const RenderContent = ({ blocks }: RenderContentProps) => {
               {children}
             </h3>
           ),
-          normal: ({ children }) => <p className="mb-4">{children}</p>,
+          normal: ({ children }) => <p className="mb-4 drop-shadow-[1px_1px_0px_rgba(0,0,0,1)]">{children}</p>,
           blockquote: ({ children }) => (
             <blockquote className="border-l-4 pl-4 italic">
               {children}
