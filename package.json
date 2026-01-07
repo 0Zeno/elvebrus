@@ -26,7 +26,7 @@
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.5.2",
     "lucide-react": "^0.469.0",
-    "next": "15.1.9",
+    "next": "15.1.11",
     "next-sanity": "^9.8.59",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
