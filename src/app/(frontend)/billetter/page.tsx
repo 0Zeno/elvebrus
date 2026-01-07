@@ -32,7 +32,7 @@ export default async function Billetter() {
           );
         })}
       </div>
-      <div className="border-2 mt-24 p-4 rounded-md bg-card">
+      <div className="border-2 mt-24 p-4 rounded-md bg-primary">
         <h2 className="text-3xl drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] pb-2">
           Informasjon om bilettene
         </h2>
