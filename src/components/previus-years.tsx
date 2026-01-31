@@ -20,8 +20,8 @@ export async function PreviusYears() {
               >
                 <div className="space-y-2">
                   <Image
-                    className="relative object-cover h-48 w-64 md:h-[512px] md:w-[768px] border-2 rounded-md mb-2"
-                    width={600}
+                    className="relative object-cover border-2 rounded-md mb-2"
+                    width={800}
                     height={600}
                     src={urlFor(year.images[0]).url()}
                     alt={`Bilde fra året ${year.year}`}
