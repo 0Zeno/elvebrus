@@ -12,7 +12,9 @@
  * ---------------------------------------------------------------------------------
  */
 
-// Source: schema.json
+export declare const internalGroqTypeReferenceTo: unique symbol;
+
+// Source: src/sanity/extract.json
 export type TextBlock = {
   _id: string;
   _type: "textBlock";
@@ -20,37 +22,51 @@ export type TextBlock = {
   _updatedAt: string;
   _rev: string;
   block?: string;
-  text: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
+  text: BlockContent;
+};
+
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type BlockContent = Array<
+  | {
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "blockquote";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
       _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
+    }
+  | {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
       _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  }>;
+    }
+>;
+
+export type LineupReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "lineup";
 };
 
 export type PreviusYear = {
@@ -61,25 +77,44 @@ export type PreviusYear = {
   _rev: string;
   year: number;
   slug: Slug;
-  lineup: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "lineup";
-  };
+  lineup: LineupReference;
   images: Array<{
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
     _key: string;
   }>;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+};
+
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
+};
+
+export type ArtistProfileReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "artistProfile";
 };
 
 export type Lineup = {
@@ -89,13 +124,11 @@ export type Lineup = {
   _updatedAt: string;
   _rev: string;
   year: number;
-  artists: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "artistProfile";
-  }>;
+  artists: Array<
+    {
+      _key: string;
+    } & ArtistProfileReference
+  >;
 };
 
 export type ArtistProfile = {
@@ -106,12 +139,7 @@ export type ArtistProfile = {
   _rev: string;
   name: string;
   image: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -130,38 +158,6 @@ export type Ticket = {
   link: string;
   release?: string;
 };
-
-export type BlockContent = Array<{
-  children?: Array<{
-    marks?: Array<string>;
-    text?: string;
-    _type: "span";
-    _key: string;
-  }>;
-  style?: "normal" | "h1" | "h2" | "h3" | "blockquote";
-  listItem?: "bullet" | "number";
-  markDefs?: Array<{
-    href?: string;
-    _type: "link";
-    _key: string;
-  }>;
-  level?: number;
-  _type: "block";
-  _key: string;
-} | {
-  asset?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-  };
-  media?: unknown;
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  alt?: string;
-  _type: "image";
-  _key: string;
-}>;
 
 export type SanityImagePaletteSwatch = {
   _type: "sanity.imagePaletteSwatch";
@@ -184,25 +180,21 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: "sanity.imageDimensions";
-  height?: number;
-  width?: number;
-  aspectRatio?: number;
+  height: number;
+  width: number;
+  aspectRatio: number;
 };
 
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+export type SanityImageMetadata = {
+  _type: "sanity.imageMetadata";
+  location?: Geopoint;
+  dimensions?: SanityImageDimensions;
+  palette?: SanityImagePalette;
+  lqip?: string;
+  blurHash?: string;
+  thumbHash?: string;
+  hasAlpha?: boolean;
+  isOpaque?: boolean;
 };
 
 export type SanityFileAsset = {
@@ -216,15 +208,22 @@ export type SanityFileAsset = {
   title?: string;
   description?: string;
   altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
+  sha1hash: string;
+  extension: string;
+  mimeType: string;
+  size: number;
+  assetId: string;
   uploadId?: string;
-  path?: string;
-  url?: string;
+  path: string;
+  url: string;
   source?: SanityAssetSourceData;
+};
+
+export type SanityAssetSourceData = {
+  _type: "sanity.assetSourceData";
+  name?: string;
+  id?: string;
+  url?: string;
 };
 
 export type SanityImageAsset = {
@@ -238,27 +237,16 @@ export type SanityImageAsset = {
   title?: string;
   description?: string;
   altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
+  sha1hash: string;
+  extension: string;
+  mimeType: string;
+  size: number;
+  assetId: string;
   uploadId?: string;
-  path?: string;
-  url?: string;
+  path: string;
+  url: string;
   metadata?: SanityImageMetadata;
   source?: SanityAssetSourceData;
-};
-
-export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata";
-  location?: Geopoint;
-  dimensions?: SanityImageDimensions;
-  palette?: SanityImagePalette;
-  lqip?: string;
-  blurHash?: string;
-  hasAlpha?: boolean;
-  isOpaque?: boolean;
 };
 
 export type Geopoint = {
@@ -268,25 +256,32 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
-};
+export type AllSanitySchemaTypes =
+  | TextBlock
+  | SanityImageAssetReference
+  | BlockContent
+  | LineupReference
+  | PreviusYear
+  | SanityImageCrop
+  | SanityImageHotspot
+  | Slug
+  | ArtistProfileReference
+  | Lineup
+  | ArtistProfile
+  | Ticket
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageMetadata
+  | SanityFileAsset
+  | SanityAssetSourceData
+  | SanityImageAsset
+  | Geopoint;
 
-export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
-  name?: string;
-  id?: string;
-  url?: string;
-};
-
-export type AllSanitySchemaTypes = TextBlock | PreviusYear | Lineup | ArtistProfile | Ticket | BlockContent | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
-export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./src/sanity/lib/queries/lineupQuery.ts
+// Source: src/sanity/lib/queries/lineupQuery.ts
 // Variable: CURRENT_YEAR_LINEUP_QUERY
 // Query: *[_type == "lineup"] | order(year desc){  year,  artists[]->{    _id,    name,    image {    asset->    }  }}[0]
-export type CURRENT_YEAR_LINEUP_QUERYResult = {
+export type CURRENT_YEAR_LINEUP_QUERY_RESULT = {
   year: number;
   artists: Array<{
     _id: string;
@@ -303,14 +298,14 @@ export type CURRENT_YEAR_LINEUP_QUERYResult = {
         title?: string;
         description?: string;
         altText?: string;
-        sha1hash?: string;
-        extension?: string;
-        mimeType?: string;
-        size?: number;
-        assetId?: string;
+        sha1hash: string;
+        extension: string;
+        mimeType: string;
+        size: number;
+        assetId: string;
         uploadId?: string;
-        path?: string;
-        url?: string;
+        path: string;
+        url: string;
         metadata?: SanityImageMetadata;
         source?: SanityAssetSourceData;
       } | null;
@@ -318,10 +313,10 @@ export type CURRENT_YEAR_LINEUP_QUERYResult = {
   }>;
 } | null;
 
-// Source: ./src/sanity/lib/queries/previusYearQuery.ts
+// Source: src/sanity/lib/queries/previusYearQuery.ts
 // Variable: PREVIUS_YEARS_QUERY
 // Query: *[_type == "previusYear"] | order(year desc) {    _id,    year,    "slug" : slug.current,    lineup->{      artists[]->{        _id,        name,        image {          asset->        }      }    },    images[] {      asset->    }  }
-export type PREVIUS_YEARS_QUERYResult = Array<{
+export type PREVIUS_YEARS_QUERY_RESULT = Array<{
   _id: string;
   year: number;
   slug: string;
@@ -341,14 +336,14 @@ export type PREVIUS_YEARS_QUERYResult = Array<{
           title?: string;
           description?: string;
           altText?: string;
-          sha1hash?: string;
-          extension?: string;
-          mimeType?: string;
-          size?: number;
-          assetId?: string;
+          sha1hash: string;
+          extension: string;
+          mimeType: string;
+          size: number;
+          assetId: string;
           uploadId?: string;
-          path?: string;
-          url?: string;
+          path: string;
+          url: string;
           metadata?: SanityImageMetadata;
           source?: SanityAssetSourceData;
         } | null;
@@ -367,22 +362,24 @@ export type PREVIUS_YEARS_QUERYResult = Array<{
       title?: string;
       description?: string;
       altText?: string;
-      sha1hash?: string;
-      extension?: string;
-      mimeType?: string;
-      size?: number;
-      assetId?: string;
+      sha1hash: string;
+      extension: string;
+      mimeType: string;
+      size: number;
+      assetId: string;
       uploadId?: string;
-      path?: string;
-      url?: string;
+      path: string;
+      url: string;
       metadata?: SanityImageMetadata;
       source?: SanityAssetSourceData;
     } | null;
   }>;
 }>;
+
+// Source: src/sanity/lib/queries/previusYearQuery.ts
 // Variable: YEAR_BY_SLUG_QUERY
 // Query: *[_type == "previusYear" && slug.current == $slug][0] {    _id,    year,    "slug": slug.current,    lineup->{      artists[]->{        _id,        name,        image {          asset->        }      }    },    images[] {      asset->    }  }
-export type YEAR_BY_SLUG_QUERYResult = {
+export type YEAR_BY_SLUG_QUERY_RESULT = {
   _id: string;
   year: number;
   slug: string;
@@ -402,14 +399,14 @@ export type YEAR_BY_SLUG_QUERYResult = {
           title?: string;
           description?: string;
           altText?: string;
-          sha1hash?: string;
-          extension?: string;
-          mimeType?: string;
-          size?: number;
-          assetId?: string;
+          sha1hash: string;
+          extension: string;
+          mimeType: string;
+          size: number;
+          assetId: string;
           uploadId?: string;
-          path?: string;
-          url?: string;
+          path: string;
+          url: string;
           metadata?: SanityImageMetadata;
           source?: SanityAssetSourceData;
         } | null;
@@ -428,62 +425,32 @@ export type YEAR_BY_SLUG_QUERYResult = {
       title?: string;
       description?: string;
       altText?: string;
-      sha1hash?: string;
-      extension?: string;
-      mimeType?: string;
-      size?: number;
-      assetId?: string;
+      sha1hash: string;
+      extension: string;
+      mimeType: string;
+      size: number;
+      assetId: string;
       uploadId?: string;
-      path?: string;
-      url?: string;
+      path: string;
+      url: string;
       metadata?: SanityImageMetadata;
       source?: SanityAssetSourceData;
     } | null;
   }>;
 } | null;
 
-// Source: ./src/sanity/lib/queries/textBlockQuery.ts
+// Source: src/sanity/lib/queries/textBlockQuery.ts
 // Variable: TEXT_BLOCK_QUERY
 // Query: *[_type == "textBlock" && block == $block][0]{  block,  text}
-export type TEXT_BLOCK_QUERYResult = {
+export type TEXT_BLOCK_QUERY_RESULT = {
   block: string | null;
-  text: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "blockquote" | "h1" | "h2" | "h3" | "normal";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  }>;
+  text: BlockContent;
 } | null;
 
-// Source: ./src/sanity/lib/queries/ticketQuery.ts
+// Source: src/sanity/lib/queries/ticketQuery.ts
 // Variable: TICKET_QUERY
 // Query: *[_type == "ticket"] | order(price desc) {    _id,    title,    price,    link,    release,    }
-export type TICKET_QUERYResult = Array<{
+export type TICKET_QUERY_RESULT = Array<{
   _id: string;
   title: string;
   price: number;
@@ -495,10 +462,10 @@ export type TICKET_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"lineup\"] | order(year desc){\n  year,\n  artists[]->{\n    _id,\n    name,\n    image {\n    asset->\n    }\n  }\n}[0]": CURRENT_YEAR_LINEUP_QUERYResult;
-    "\n  *[_type == \"previusYear\"] | order(year desc) {\n    _id,\n    year,\n    \"slug\" : slug.current,\n    lineup->{\n      artists[]->{\n        _id,\n        name,\n        image {\n          asset->\n        }\n      }\n    },\n    images[] {\n      asset->\n    }\n  }\n": PREVIUS_YEARS_QUERYResult;
-    "\n*[_type == \"previusYear\" && slug.current == $slug][0] {\n    _id,\n    year,\n    \"slug\": slug.current,\n    lineup->{\n      artists[]->{\n        _id,\n        name,\n        image {\n          asset->\n        }\n      }\n    },\n    images[] {\n      asset->\n    }\n  }\n": YEAR_BY_SLUG_QUERYResult;
-    "\n*[_type == \"textBlock\" && block == $block][0]{\n  block,\n  text\n}\n": TEXT_BLOCK_QUERYResult;
-    "*[_type == \"ticket\"] | order(price desc) {\n    _id,\n    title,\n    price,\n    link,\n    release,\n    }": TICKET_QUERYResult;
+    '*[_type == "lineup"] | order(year desc){\n  year,\n  artists[]->{\n    _id,\n    name,\n    image {\n    asset->\n    }\n  }\n}[0]': CURRENT_YEAR_LINEUP_QUERY_RESULT;
+    '\n  *[_type == "previusYear"] | order(year desc) {\n    _id,\n    year,\n    "slug" : slug.current,\n    lineup->{\n      artists[]->{\n        _id,\n        name,\n        image {\n          asset->\n        }\n      }\n    },\n    images[] {\n      asset->\n    }\n  }\n': PREVIUS_YEARS_QUERY_RESULT;
+    '\n*[_type == "previusYear" && slug.current == $slug][0] {\n    _id,\n    year,\n    "slug": slug.current,\n    lineup->{\n      artists[]->{\n        _id,\n        name,\n        image {\n          asset->\n        }\n      }\n    },\n    images[] {\n      asset->\n    }\n  }\n': YEAR_BY_SLUG_QUERY_RESULT;
+    '\n*[_type == "textBlock" && block == $block][0]{\n  block,\n  text\n}\n': TEXT_BLOCK_QUERY_RESULT;
+    '*[_type == "ticket"] | order(price desc) {\n    _id,\n    title,\n    price,\n    link,\n    release,\n    }': TICKET_QUERY_RESULT;
   }
 }

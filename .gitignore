@@ -37,6 +37,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# sanity generated
+src/sanity/extract.json
 .vercel
 
 CLAUDE.md
