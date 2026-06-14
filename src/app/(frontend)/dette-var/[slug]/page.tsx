@@ -1,5 +1,6 @@
 import { urlFor } from "@/sanity/lib/image";
 import { getPreviousYearBySlug } from "@/sanity/lib/queries/previusYearQuery";
+import { YEAR_BY_SLUG_QUERY_RESULT } from "@/sanity/types";
 import Image from "next/image";
 
 export default async function Year({
@@ -8,12 +9,12 @@ export default async function Year({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const { data: data } = await getPreviousYearBySlug(slug);
+  const { data }: { data: YEAR_BY_SLUG_QUERY_RESULT } = await getPreviousYearBySlug(slug);
 
   return (
     <>
-      <h2 className="text-7xl drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] pb-8">
-        Dette var året {data?.year}
+      <h2 className="text-7xl drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] text-center pb-8">
+        {data?.year}
       </h2>
       <div className="flex justify-center flex-wrap space-x-2  sm:space-x-8">
         {data?.lineup.artists.map((artist) => {
